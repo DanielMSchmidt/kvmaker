@@ -6,8 +6,11 @@
     <td><%= kv.values %></td>
     <td>
       <textarea cols="40" rows="10" id="post_body" name="post[body]">
-        <%= calculate_latex_normal_form(kv) %>
+        Wertetabelle:
         <%= calculate_latex_table(kv) %>
+        Normalform:
+        <%= calculate_latex_normal_form(kv) %>
+        KV Diagramme:
         <%= generate_KV_diagrams(kv) %>
       </textarea>
     </td>

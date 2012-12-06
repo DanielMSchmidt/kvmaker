@@ -2,16 +2,17 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
 
-gem 'haml'
 gem 'thin'
-
-group :development do
-  gem 'sqlite3'
-end
-
 
 group :production do
 	gem 'pg'
+end
+
+group :development, :test do
+  gem 'sqlite3'
+  gem 'bullet'
+  gem 'brakeman'
+  gem "rails_best_practices"
 end
 
 # Gems used only for assets and not required
