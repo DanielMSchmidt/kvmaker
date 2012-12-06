@@ -30,17 +30,20 @@ module KvsHelper
   end
 
   def calculate_latex_table(kv)
-    width = kv.fields.split(", ").length
-    str = print_diagram_header(kv.fields.split(", "))
-    str += print_each_combination(width)
+    str = print_diagram_header(kv.fields.split(", "), kv.input)
+    str += print_each_combination(kv.input)
     str += print_diagram_footer
     return str
   end
 
-  def print_diagram_header(fields)
-    str = '\begin{center}
-    \begin{tabular}{XXXXX}
-    '
+  def print_diagram_header(fields, input)
+    input_values = ''
+    input.times{ input_values += 'c'}
+    input_values += '|'
+    (fields.length - input).times{ input_values += 'c' }
+    str = "\\begin{center}
+    \\begin{tabular}{#{input_values}}
+    "
     str += fields.join(" & ")
     str += '\\\\
      '
@@ -93,5 +96,41 @@ module KvsHelper
     else
       "\\overline{#{fields[i]}}"
     end
+  end
+
+  def generate_KV_diagrams(kv)
+    str = ''
+    (kv.fields.split(", ").length - kv.input).times{|x| str += generate_KV_diagram(kv, x)}
+    return str
+  end
+
+  def generate_KV_diagram(kv, number)
+    str = "\\input kvmacros
+    \\karnaughmap{#{kv.input}}{$#{generate_KV_function(kv, number)}:$}{#{generate_KV_inputs(kv)}}{#{generate_KV_values(kv)}}
+    {
+
+    }
+    "
+  end
+
+  def generate_KV_function(kv, number)
+    str = "#{kv.fields.split(", ")[(kv.input + number)]}( "
+    str += kv.fields.split(", ")[0..(kv.input - 1)].join(", ")
+    str.chomp(", ")
+    return str + ")"
+  end
+
+  def generate_KV_inputs(kv)
+    str = ''
+    kv.fields.split(", ")[0..(kv.input - 1)].each{|x| str += "{$#{x}$}"}
+    return str
+  end
+
+  def generate_KV_values(kv)
+    str = ''
+    kv.values.split(", ").each do |x|
+      x.split(' ')[0..(kv.input - 1)].each{|y| str += y}
+    end
+    return str.gsub(/\s+/, "")
   end
 end

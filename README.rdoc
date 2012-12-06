@@ -1,1 +1,1 @@
-== This small tool generates Latex output for KV Diagrams
+== This small tool generates Latex output for KV Diagrams, Normalform and the value table
