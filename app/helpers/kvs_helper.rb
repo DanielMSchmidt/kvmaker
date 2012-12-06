@@ -32,7 +32,7 @@ module KvsHelper
   def calculate_latex_table(kv)
     width = kv.fields.split(", ").length
     str = print_diagram_header(kv.fields.split(", "))
-    print_each_combination(width)
+    str += print_each_combination(width)
     str += print_diagram_footer
     return str
   end
@@ -52,12 +52,24 @@ module KvsHelper
     str = ''
     i = 0
     while (i < 2 ** width)
-      str += i.to_s(2).split('').join(' & ')
+      value = i.to_s(2)
+      value = add_zeros(value, width) if value.length <= width
+      str += value.split('').join(' & ')
       str += ' \\\\
       '
       i += 1
     end
+    return str
   end
+
+  def add_zeros(value, width)
+    out = value
+    while (out.length <= width) do
+      out = "0" + out
+    end
+    return out
+  end
+
   def print_diagram_line(fields, values)
     i = 0
     str = ''
