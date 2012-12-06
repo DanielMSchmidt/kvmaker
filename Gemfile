@@ -4,7 +4,10 @@ gem 'rails', '3.2.9'
 
 gem 'haml'
 gem 'thin'
-gem 'sqlite3'
+
+group :development do
+  gem 'sqlite3'
+end
 
 
 group :production do
