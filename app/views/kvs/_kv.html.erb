@@ -1,0 +1,28 @@
+<%= div_for kv do %>
+<table>
+  <tr>
+    <td><%= kv.fields %></td>
+    <td><%= kv.input %></td>
+    <td><%= kv.values %></td>
+    <td>
+      <textarea cols="40" rows="10" id="post_body" name="post[body]">
+        <%= calculate_latex_normal_form(kv) %>
+      </textarea>
+    </td>
+    <td>
+      <textarea cols="40" rows="10" id="post_body" name="post[body]">
+        <%= calculate_latex_table(kv) %>
+      </textarea>
+    </td>
+
+    <td>
+      <textarea cols="40" rows="10" id="post_body" name="post[body]">
+        <%= generate_KV_diagrams(kv) %>
+      </textarea>
+    </td>
+    <td><%= link_to 'Show', kv %></td>
+    <td><%= link_to 'Edit', edit_kv_path(kv) %></td>
+    <td><%= link_to 'Destroy', kv, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+</table>
+<% end %>
