@@ -128,9 +128,7 @@ module KvsHelper
 
   def generate_KV_values(kv)
     str = ''
-    kv.values.split(", ").each do |x|
-      x.split(' ')[0..(kv.input - 1)].each{|y| str += y}
-    end
+    (2 ** kv.input).times{|x| str += '0'}
     return str.gsub(/\s+/, "")
   end
 end
