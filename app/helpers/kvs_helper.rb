@@ -53,7 +53,7 @@ module KvsHelper
     i = 0
     while (i < 2 ** width)
       value = i.to_s(2)
-      value = add_zeros(value, width) if value.length <= width
+      value = add_zeros(value, width) if value.length < width
       str += value.split('').join(' & ')
       str += ' \\\\
       '
@@ -64,7 +64,7 @@ module KvsHelper
 
   def add_zeros(value, width)
     out = value
-    while (out.length <= width) do
+    while (out.length < width) do
       out = "0" + out
     end
     return out
