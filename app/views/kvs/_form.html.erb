@@ -1,0 +1,28 @@
+<%= form_for(@kv) do |f| %>
+  <% if @kv.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@kv.errors.count, "error") %> prohibited this kv from being saved:</h2>
+
+      <ul>
+      <% @kv.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <strong>Seperate value names by comma</strong>
+    <%= f.label :fields %><br />
+    <%= f.text_field :fields %>
+  </div>
+  <div class="field">
+    Add all the ones!
+    <strong>Seperate single value names by space, lines by comma</strong>
+    <%= f.label :values %><br />
+    <%= f.text_field :values %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
