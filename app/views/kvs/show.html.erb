@@ -1,15 +1,2 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Fields:</b>
-  <%= @kv.fields %>
-</p>
-
-<p>
-  <b>Values:</b>
-  <%= @kv.values %>
-</p>
-
-
-<%= link_to 'Edit', edit_kv_path(@kv) %> |
-<%= link_to 'Back', kvs_path %>
+<%= render @kv %>
