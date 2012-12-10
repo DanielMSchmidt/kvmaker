@@ -44,7 +44,7 @@ module KvsHelper
     str = "\\begin{center}
     \\begin{tabular}{#{input_values}}
     $"
-    str += fields.join("$ & $")
+    str += fields.split(",").join("$ & $")
     str += '$\\\\
      '
 
