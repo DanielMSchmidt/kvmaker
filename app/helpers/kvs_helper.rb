@@ -43,9 +43,9 @@ module KvsHelper
     (fields.length - input).times{ input_values += 'c' }
     str = "\\begin{center}
     \\begin{tabular}{#{input_values}}
-    "
-    str += fields.join(" & ")
-    str += '\\\\
+    $"
+    str += fields.join("$ & $")
+    str += '$\\\\
      '
 
     return str
